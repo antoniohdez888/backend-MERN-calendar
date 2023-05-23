@@ -58,10 +58,10 @@ const loginUsuario = async( req, res = response ) => {
         const usuario = await Usuario.findOne({ email });
 
         if( !usuario ){
-            res.status(400).json({
+            return res.status(400).json({
                 ok: false, 
                 msg: 'No hay usuario registrado con ese mail'
-            })
+            });
         }
 
         // confirmar password
@@ -72,7 +72,7 @@ const loginUsuario = async( req, res = response ) => {
             return res.status(400).json({
                 ok: false,
                 msg: 'Password incorrecto'
-            })
+            });
         }
 
         // * generar JWT
